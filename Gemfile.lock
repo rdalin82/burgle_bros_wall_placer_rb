@@ -3,10 +3,14 @@ GEM
   specs:
     awesome_print (1.8.0)
     mustermann (1.0.2)
+    passenger (5.2.1)
+      rack
+      rake (>= 0.8.1)
     pg (1.0.0)
     rack (2.0.4)
     rack-protection (2.0.1)
       rack
+    rake (12.3.0)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -19,6 +23,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  passenger
   pg
   sinatra (>= 2.0.1)
 

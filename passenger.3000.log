@@ -1,0 +1,27 @@
+[ N 2018-03-11 18:58:36.9591 7568/T1 age/Wat/WatchdogMain.cpp:1258 ]: Starting Passenger watchdog...
+[ N 2018-03-11 18:58:36.9715 7571/T1 age/Cor/CoreMain.cpp:1242 ]: Starting Passenger core...
+[ N 2018-03-11 18:58:36.9717 7571/T1 age/Cor/CoreMain.cpp:252 ]: Passenger core running in multi-application mode.
+[ N 2018-03-11 18:58:36.9793 7571/T1 age/Cor/CoreMain.cpp:977 ]: Passenger core online, PID 7571
+App 7616 stdout: 
+[ N 2018-03-11 18:58:39.5485 7571/T5 age/Cor/SecurityUpdateChecker.h:517 ]: Security update check: no update found (next check in 24 hours)
+App 7634 stdout: 
+App 7616 stderr: 127.0.0.1 - - [11/Mar/2018:18:58:39 -0500] "HEAD / HTTP/1.1" 200 3216 0.0053
+App 7616 stderr: 127.0.0.1 - - [11/Mar/2018:18:58:50 -0500] "GET / HTTP/1.1" 200 3216 0.0042
+App 7616 stderr: 127.0.0.1 - - [11/Mar/2018:18:58:51 -0500] "GET /walls HTTP/1.1" 200 191 0.0020
+App 7616 stderr: 127.0.0.1 - - [11/Mar/2018:18:58:51 -0500] "GET /favicon.ico HTTP/1.1" 404 469 0.0005
+
+[ N 2018-03-11 18:58:54.5762 7571/T7 age/Cor/CoreMain.cpp:616 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2018-03-11 18:58:54.5764 7571/T1 age/Cor/CoreMain.cpp:1154 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2018-03-11 18:58:54.5764 7571/T1 age/Cor/CoreMain.cpp:1068 ]: Checking whether to disconnect long-running connections for process 7634, application /home/rdalin/projects/ruby/burgle_bros_floors (development)
+[ N 2018-03-11 18:58:54.5765 7571/T9 Ser/Server.h:903 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2018-03-11 18:58:54.5766 7571/T9 Ser/Server.h:559 ]: [ServerThr.2] Shutdown finished
+[ N 2018-03-11 18:58:54.5766 7571/Tb Ser/Server.h:903 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2018-03-11 18:58:54.5766 7571/Tb Ser/Server.h:559 ]: [ServerThr.3] Shutdown finished
+[ N 2018-03-11 18:58:54.5767 7571/Te Ser/Server.h:903 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2018-03-11 18:58:54.5767 7571/Te Ser/Server.h:559 ]: [ServerThr.4] Shutdown finished
+[ N 2018-03-11 18:58:54.5768 7571/T7 Ser/Server.h:903 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2018-03-11 18:58:54.5769 7571/T7 Ser/Server.h:559 ]: [ServerThr.1] Shutdown finished
+[ N 2018-03-11 18:58:54.5770 7571/Tg Ser/Server.h:903 ]: [ApiServer] Freed 0 spare client objects
+[ N 2018-03-11 18:58:54.5770 7571/Tg Ser/Server.h:559 ]: [ApiServer] Shutdown finished
+[ N 2018-03-11 18:58:54.5771 7571/T1 age/Cor/CoreMain.cpp:1068 ]: Checking whether to disconnect long-running connections for process 7634, application /home/rdalin/projects/ruby/burgle_bros_floors (development)
+[ N 2018-03-11 18:58:54.8470 7571/T1 age/Cor/CoreMain.cpp:1227 ]: Passenger core shutdown finished
