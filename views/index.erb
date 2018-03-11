@@ -1,7 +1,6 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
 <h1>Results</h1>
-
 <h1>Floor 1</h1>
 <canvas id="canvas-floor1"></canvas>
 <h1>Floor 2</h1>
@@ -20,7 +19,6 @@
     var ctx= canvas.getContext('2d');
     ctx.fillStyle = 'white';
     var length = 200;
-    // draw boxes
     ctx.strokeRect(5, 5, length, length);
 
     function drawGrid(w, h, ctx) {
