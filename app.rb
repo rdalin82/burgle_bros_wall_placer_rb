@@ -3,6 +3,7 @@ require './lib/wall_edge'
 
 
 require 'sinatra'
+require 'json'
 
 get '/' do
   results = {}
@@ -15,6 +16,20 @@ get '/' do
   @results = results
   erb :index
 end
+
+get '/walls' do
+  results = {}
+  3.times do |x|
+    floor = "#{x+1}"
+    app = App.new('./config/board.txt')
+    app.run
+    results.merge!(floor => app.placed_walls )
+  end
+  @results = results
+  content_type :json
+  { data: @results }.to_json
+end
+
 
 
 class App

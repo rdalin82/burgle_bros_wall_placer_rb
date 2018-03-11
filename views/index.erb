@@ -1,5 +1,125 @@
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
 <h1>Results</h1>
-<% @results.each do |k, v| %>
-  <h2>Floor <%= k %> </h2>
-  <h2>Results <%= v %></h2>
-<% end %> 
+
+<h1>Floor 1</h1>
+<canvas id="canvas-floor1"></canvas>
+<h1>Floor 2</h1>
+<canvas id="canvas-floor2"></canvas>
+<h1>Floor 3</h1>
+<canvas id="canvas-floor3"></canvas>
+
+
+<script type="text/javascript">
+  function setupFloor(id) {
+    var canvas = document.getElementById(id);
+    var width = 1200;
+    var height = 1200;
+    canvas.width = width;
+    canvas.height = height;
+    var ctx= canvas.getContext('2d');
+    ctx.fillStyle = 'white';
+    var length = 200;
+    // draw boxes
+    ctx.strokeRect(5, 5, length, length);
+
+    function drawGrid(w, h, ctx) {
+      ctx = ctx
+      ctx.beginPath()
+      ctx.canvas.width = w;
+      ctx.canvas.height = h;
+      for (x = 0; x <= w; x += 50) {
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, h);
+          for (y = 0; y <= h; y += 50) {
+              ctx.moveTo(0, y);
+              ctx.lineTo(w, y);
+          }
+      }
+      ctx.stroke();
+    };
+    drawGrid(length, length, ctx);
+    return ctx;
+  }
+  window.ctx1 = setupFloor('canvas-floor1');
+  window.ctx2 = setupFloor('canvas-floor2');
+  window.ctx3 = setupFloor('canvas-floor3');
+
+  function drawVerticalLine(sq1, id){
+    var row = [
+      [0, 1, 2, 3],
+      [4, 5, 6, 7],
+      [8, 9, 10, 11],
+      [12, 13, 14, 15]
+    ];
+    var target = [];
+    for (var x = 0; x < row.length; x++) {
+      for (var y = 0; y < row[x].length; y++) {
+        if (row[x][y] == sq1) {
+          target = [(x+1)*50, (y+1)*50]
+        }
+      }
+    }
+    var canvas = document.getElementById(id);
+    var ctx= canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.strokeStyle = "#ff0000";
+    ctx.lineWidth = 5;
+    ctx.moveTo(target[1], target[0]);
+    ctx.lineTo(target[1], target[0]-50);
+    ctx.stroke();
+  };
+
+  function drawHorizontalLine(sq1, id){
+    var row = [
+      [0, 1, 2, 3],
+      [4, 5, 6, 7],
+      [8, 9, 10, 11],
+      [12, 13, 14, 15]
+    ];
+    var target = [];
+    for (var x = 0; x < row.length; x++) {
+      for (var y = 0; y < row[x].length; y++) {
+        if (row[x][y] == sq1) {
+          target = [(x+1)*50, (y+1)*50]
+        }
+      }
+    }
+    var canvas = document.getElementById(id);
+    var ctx= canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.strokeStyle = "#0000FF";
+    ctx.lineWidth = 5;
+    ctx.moveTo(target[1], target[0]);
+    ctx.lineTo(target[1]-50, target[0]);
+    ctx.stroke();
+  };
+
+  $.getJSON('/walls').done(function(data){
+    window.data = data
+    var wallList = data.data
+    var floors = [1, 2, 3]
+    var canvasList = ["canvas-floor1", "canvas-floor2", "canvas-floor3"]
+    for (var i = 0; i < floors.length; i++){
+      floor = floors[i]
+      canvas = canvasList[i]
+      walls = wallList[floor]
+      for (var j = 0; j < walls.length; j++){
+        firstSq = parseInt(walls[j].split("-")[0]);
+        secondSq = parseInt(walls[j].split("-")[1]);
+        if ((secondSq - firstSq) == 1){
+          drawVerticalLine(firstSq, canvas);
+        }
+        else {
+          drawHorizontalLine(firstSq, canvas);
+        }
+      }
+    }
+  })
+</script>
+
+<style media="screen">
+  canvas {
+    padding: 10px;
+  }
+</style>
