@@ -6,14 +6,6 @@ require 'sinatra'
 require 'json'
 
 get '/' do
-  results = {}
-  3.times do |x|
-    floor = "#{x+1}"
-    app = App.new('./config/board.txt')
-    app.run
-    results.merge!(floor => app.placed_walls.map(&:to_s).join('; ') )
-  end
-  @results = results
   erb :index
 end
 
@@ -61,9 +53,6 @@ class App
     board_dup = @board.dup
     walls = @walls.dup.shuffle
     setup(board_dup, walls)
-    # ap @placed_walls.map(&:to_s)
-    # ap "Duplicates????"
-    # ap @placed_walls.count == @placed_walls.uniq
   end
 
   def setup(board, walls, placed_walls=[])
@@ -87,11 +76,4 @@ class App
     end
     return false
   end
-
 end
-
-# 3.times do |x|
-#   app = App.new(ARGV[0])
-#   ap "Floor #{x+1}: "
-#   app.run
-# end
